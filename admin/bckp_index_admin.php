@@ -119,6 +119,38 @@ $result = mysqli_query($koneksi, $query);
 <link rel="stylesheet" href="../css/dataTables.bootstrap.min.css">
 
 
+<div id="myCarousel" style="margin-bottom: 0px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); margin-top: -40px; background-position: 0% 40%;" class="carousel slide" data-ride="carousel">
+
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+  
+  </ol>
+
+  <div class="carousel-inner">
+    <div class="item active">
+      <img src="../img/cor3.jpg" alt="Los Angeles">
+    </div>
+
+    <div class="item">
+      <img src="../img/cor1.jpg" alt="Chicago">
+    </div>
+  </div>
+  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#myCarousel" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div><br><br>
+
+<!-- <div class="container">
+  <div id="chart-container">
+          <canvas id="mycanvas"></canvas>
+      </div>
+</div> -->
 
 <div class="container">
     <!-- Main content -->
