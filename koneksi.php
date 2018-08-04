@@ -3,7 +3,7 @@
  $host = 'localhost';  
  $user = 'root';  
  $pass = 'BAba55ko';
- $name = 'karimah'; 
+ $name = 'karimah';  
 
  $koneksi = new mysqli($host,$user,$pass,$name);  //koneksi Database
 

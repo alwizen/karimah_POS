@@ -27,7 +27,7 @@ $title = "Edit Supplier";
     <div class="form-group">
       <label class="control-label col-sm-2" for="">No Telp :</label>
       <div class="col-sm-6">          
-        <input type="text" class="form-control" id="" placeholder="No Telp" name="no_tlp" value=" <?php echo $d['no_tlp'] ?> ">
+        <input type="text" class="form-control" id="no_tlp" placeholder="No Telp" name="no_tlp" value=" <?php echo $d['no_tlp'] ?> ">
       </div>
     </div>
 
@@ -39,7 +39,13 @@ $title = "Edit Supplier";
     </div>
   </form>
   </div>
-
+<script src="../js/jquery.js"></script>
+   <script src="../js/jquery.mask.js"></script>
+  <script type="text/javascript">
+            $(document).ready(function(){
+              $('#no_tlp').mask('0000-0000-0000', {reverse: true});
+              });
+        </script>
 
     <?php 
 include 'nav_admin/footer.php';

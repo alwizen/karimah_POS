@@ -52,16 +52,15 @@ include 'nav_admin/header.php';
 </div>
 </div>
 
-   <script src="../js/jquery-3.3.1.min.js"></script>
-   <script src="../js/jquery.mask.min.js"></script>
+   <!-- <script src="../js/jquery.js"></script>
+   <script src="../js/jquery.mask.js"></script>
   <script type="text/javascript">
             $(document).ready(function(){
- 
-                // Format mata uang.
-                $( '.harga_beli' ).mask('000.000.000', {reverse: true});
+                $( '#harga_beli' ).mask('000.000.000', {reverse: true});
+                $( '#harga_jual' ).mask('000.000.000', {reverse: true});
  
             })
-        </script>
+        </script> -->
 
 <?php
 include 'nav_admin/footer.php';
