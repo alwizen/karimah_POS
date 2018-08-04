@@ -164,7 +164,7 @@ $result = mysqli_query($koneksi, $query);
               <p>Total Supplier</p>
             </div>
             <div class="icon">
-              <i class="ion ion-stats-bars"></i>
+              <span class="glyphicon glyphicon-user"></span>
             </div>
             <a href="list_barang.php" target="_blank" class="kotak_kecil-footer">More info <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span></a>
           </div>
@@ -185,7 +185,7 @@ $result = mysqli_query($koneksi, $query);
               <p>Total Pembelian </p>
             </div>
             <div class="icon">
-              <i class="ion ion-person-add"></i>
+              <span class="glyphicon glyphicon-shopping-cart"></span>
             </div>
             <a href="list_barang.php" target="_blank" class="kotak_kecil-footer">More info <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span></a>
           </div>
@@ -196,17 +196,18 @@ $result = mysqli_query($koneksi, $query);
           <div class="kotak_kecil bg-red" style="background-color:#DD4B39;">
             <div class="inner">
             <?php
-            $jumlah_record = mysqli_query($koneksi, "SELECT COUNT(*) AS jumlah from penjualan");
+            $jumlah_record = mysqli_query($koneksi, "SELECT tanggal,COUNT(*) AS harian FROM penjualan WHERE tanggal=DATE(NOW()) GROUP BY tanggal");
+        
             $jum = mysqli_fetch_array($jumlah_record);
             echo '
-            <h3>' . $jum['jumlah'] . '</h3>';
+            <h3>' . $jum['harian'] . '</h3>';
 
             ?>
 
-              <p>Total Penjualan</p>
+              <p>Total Penjualan Hari Ini</p>
             </div>
             <div class="icon">
-              <i class="ion ion-pie-graph"></i>
+              <span class=" glyphicon glyphicon-piggy-bank "></span>
             </div>
             <a href="list_barang.php" target="_blank" class="kotak_kecil-footer">More info <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span></a>
           </div>

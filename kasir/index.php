@@ -30,17 +30,39 @@ $result = mysqli_query($koneksi, $query);
                              <span class="glyphicon glyphicon-pushpin"></span> Informasi
                             </div>
                             <div class="panel-body">
-                              <strong><?php
+                              <strong>
+                                <?php
                               $tgl=date('l, d M Y');
                               echo $tgl;
-                              ?></strong>
+                              ?>
+                              </strong>
                                 <p>
                                    Nama User : <strong><?php echo $nama;?></strong>
                                 </p>
+                                <!-- info penjualan hari ini -->
+                                <?php
+                                $jumlah_record = mysqli_query($koneksi, "SELECT tanggal,COUNT(*) AS harian FROM penjualan WHERE tanggal=DATE(NOW()) GROUP BY tanggal");
+
+                                $jum = mysqli_fetch_array($jumlah_record);
+                                echo '
+                                <p>Penjualan Hari ini : <b>' . $jum['harian'] . '</b></p>';
+                                ?>
+                                <!-- akhir  -->
+                                
+                                <!-- penjualan bulan ini -->
+                                <?php
+                                $jumlah_record = mysqli_query($koneksi, "SELECT CONCAT(YEAR(tanggal),'/',MONTH(tanggal)) AS bulanan, COUNT(*) AS jml FROM penjualan WHERE CONCAT(YEAR(tanggal),'/',MONTH(tanggal))=CONCAT(YEAR(NOW()),'/',MONTH(NOW())) GROUP BY YEAR(tanggal),MONTH(tanggal)");
+
+                                $jum = mysqli_fetch_array($jumlah_record);
+                                echo '
+                                <p>Penjualan Bulan ini : <b>' . $jum['jml'] . '</b></p>';
+                                ?>
+                                <!-- akhir -->
+
+
 
                             </div>
-                            <div class="panel-footer">
-                            </div>
+                            
                         </div>
                     </div>
                 <div class="col-md-8 col-sm-4 col-xs-6">
