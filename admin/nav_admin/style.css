@@ -1,0 +1,107 @@
+.navbar-default {
+  background-color: #42809e;
+  border-color: #3a748f;
+}
+.navbar-default .navbar-brand {
+  color: #ecf0f1;
+}
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+  color: #ecdbff;
+}
+.navbar-default .navbar-text {
+  color: #ecf0f1;
+}
+.navbar-default .navbar-nav > li > a {
+  color: #ecf0f1;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  color: #ecdbff;
+}
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  color: #ecdbff;
+  background-color: #3a748f;
+}
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+  color: #ecdbff;
+  background-color: #3a748f;
+}
+.navbar-default .navbar-toggle {
+  border-color: #3a748f;
+}
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+  background-color: #3a748f;
+}
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #ecf0f1;
+}
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
+  border-color: #ecf0f1;
+}
+.navbar-default .navbar-link {
+  color: #ecf0f1;
+}
+.navbar-default .navbar-link:hover {
+  color: #ecdbff;
+}
+
+@media (max-width: 767px) {
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: #ecf0f1;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #ecdbff;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #ecdbff;
+    background-color: #3a748f;
+  }
+}
+ .navbar {
+            min-height: 80px;
+
+        }
+        .navbar-nav > li > a {
+            padding-top: 26.5px;
+            padding-bottom: 26.5px;
+            line-height: 27px;
+        }
+        .navbar-brand {
+            font-family: 'Lobster 1.4', padding: 0 15px;
+            height: 80px;
+            line-height: 80px;
+        }
+        .navbar-brand>img {
+            max-height: auto;
+            height: 150%;
+            width: auto;
+            margin: -5px;
+            padding-bottom: auto;
+        }
+        body { 
+            margin-top: 100px;
+            margin-bottom: 120px;
+        }
+        .footer{
+            height:50px;
+            text-align: right;
+            line-height:50px;
+            background-color: #333;
+            color: white;
+            position:fixed;
+            bottom:0;
+            padding-right: 50px;
+            z-index:9999;
+            width:100%;
+            overflow: hidden;
+       }
