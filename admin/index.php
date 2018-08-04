@@ -28,17 +28,17 @@ $result = mysqli_query($koneksi, $query);
     color: #ffffff;
     text-shadow: black 0.3em 0.3em 0.3em;
   }
-.small-box {
-  border-radius: 2px;
+.kotak_kecil {
+  border-radius: 5px;
   position: relative;
   display: block;
   margin-bottom: 20px;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 11px #444140;
 }
-.small-box > .inner {
+.kotak_kecil > .inner {
   padding: 10px;
 }
-.small-box > .small-box-footer {
+.kotak_kecil > .kotak_kecil-footer {
   position: relative;
   text-align: center;
   padding: 3px 0;
@@ -49,56 +49,57 @@ $result = mysqli_query($koneksi, $query);
   background: rgba(0, 0, 0, 0.1);
   text-decoration: none;
 }
-.small-box > .small-box-footer:hover {
+.kotak_kecil > .kotak_kecil-footer:hover {
   color: #fff;
   background: rgba(0, 0, 0, 0.15);
 }
-.small-box h3 {
+.kotak_kecil h3 {
   font-size: 38px;
   font-weight: bold;
   margin: 0 0 10px 0;
   white-space: nowrap;
   padding: 0;
 }
-.small-box p {
+.kotak_kecil p {
   font-size: 15px;
+  color: #eee;
 }
-.small-box p > small {
+.kotak_kecil p > small {
   display: block;
   color: #f9f9f9;
   font-size: 13px;
   margin-top: 5px;
 }
-.small-box h3,
-.small-box p {
+.kotak_kecil h3,
+.kotak_kecil p {
   z-index: 5;
 }
-.small-box .icon {
+.kotak_kecil .icon {
   -webkit-transition: all 0.3s linear;
   -o-transition: all 0.3s linear;
   transition: all 0.3s linear;
   position: absolute;
-  top: -10px;
+  top: 2px;
   right: 10px;
   z-index: 0;
-  font-size: 90px;
+  font-size: 80px;
   color: rgba(0, 0, 0, 0.15);
 }
-.small-box:hover {
+.kotak_kecil:hover {
   text-decoration: none;
   color: #f9f9f9;
 }
-.small-box:hover .icon {
+.kotak_kecil:hover .icon {
   font-size: 95px;
 }
 @media (max-width: 767px) {
-  .small-box {
+  .kotak_kecil {
     text-align: center;
   }
-  .small-box .icon {
+  .kotak_kecil .icon {
     display: none;
   }
-  .small-box p {
+  .kotak_kecil p {
     font-size: 12px;
   }
 }
@@ -106,15 +107,7 @@ $result = mysqli_query($koneksi, $query);
  * Component: Box
  * --------------
  */
-.box {
-  position: relative;
-  border-radius: 3px;
-  background: #ffffff;
-  border-top: 3px solid #d2d6de;
-  margin-bottom: 20px;
-  width: 100%;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-}
+
 
         #chart-container {
           align-items: center;
@@ -126,7 +119,7 @@ $result = mysqli_query($koneksi, $query);
 <link rel="stylesheet" href="../css/dataTables.bootstrap.min.css">
 
 
-<div id="myCarousel" style="margin-bottom: 0px; margin-top: -40px; background-position: 0% 40%;" class="carousel slide" data-ride="carousel">
+<div id="myCarousel" style="margin-bottom: 0px; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); margin-top: -40px; background-position: 0% 40%;" class="carousel slide" data-ride="carousel">
 
   <ol class="carousel-indicators">
     <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -166,7 +159,7 @@ $result = mysqli_query($koneksi, $query);
       <div class="row">
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
-          <div class="small-box bg-aqua" style="background-color:#46a9e2;">
+          <div class="kotak_kecil bg-aqua" style="background-color:#46a9e2;">
             <div class="inner">
              <?php
             $jumlah_record = mysqli_query($koneksi, "SELECT COUNT(*) AS jumlah from barang");
@@ -176,19 +169,21 @@ $result = mysqli_query($koneksi, $query);
            
             ?>
 
-              <p>Barang</p>
+              <p>Total Barang</p>
             </div>
             <div class="icon">
-              <i class="ion ion-bag"></i>
+              
+              <span class="glyphicon glyphicon-book" aria-hidden="true"></span>
+              
             </div>
-            <a href="list_barang.php" class="small-box-footer">More info <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span></a>
+            <a href="list_barang.php" target="_blank" class="kotak_kecil-footer">More info <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span></a>
           </div>
         </div>
 
         <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
-          <div class="small-box bg-green" style="background-color:#00A65A;">
+          <div class="kotak_kecil bg-green" style="background-color:#00A65A;">
             <div class="inner">
             <?php
             $jumlah_record = mysqli_query($koneksi, "SELECT COUNT(*) AS jumlah from supplier");
@@ -198,18 +193,18 @@ $result = mysqli_query($koneksi, $query);
 
             ?>
 
-              <p>Supplier</p>
+              <p>Total Supplier</p>
             </div>
             <div class="icon">
               <i class="ion ion-stats-bars"></i>
             </div>
-            <a href="list_barang.php" class="small-box-footer">More info <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span></a>
+            <a href="list_barang.php" target="_blank" class="kotak_kecil-footer">More info <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span></a>
           </div>
         </div>
         <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
-          <div class="small-box bg-yellow" style="background-color:#F39C12;">
+          <div class="kotak_kecil bg-yellow" style="background-color:#F39C12;">
             <div class="inner">
              <?php
             $jumlah_record = mysqli_query($koneksi, "SELECT COUNT(*) AS jumlah from pembelian");
@@ -219,18 +214,18 @@ $result = mysqli_query($koneksi, $query);
 
             ?>
 
-              <p>Pembelian </p>
+              <p>Total Pembelian </p>
             </div>
             <div class="icon">
               <i class="ion ion-person-add"></i>
             </div>
-            <a href="list_barang.php" class="small-box-footer">More info <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span></a>
+            <a href="list_barang.php" target="_blank" class="kotak_kecil-footer">More info <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span></a>
           </div>
         </div>
         <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
-          <div class="small-box bg-red" style="background-color:#DD4B39;">
+          <div class="kotak_kecil bg-red" style="background-color:#DD4B39;">
             <div class="inner">
             <?php
             $jumlah_record = mysqli_query($koneksi, "SELECT COUNT(*) AS jumlah from penjualan");
@@ -240,12 +235,12 @@ $result = mysqli_query($koneksi, $query);
 
             ?>
 
-              <p>Penjualan</p>
+              <p>Total Penjualan</p>
             </div>
             <div class="icon">
               <i class="ion ion-pie-graph"></i>
             </div>
-            <a href="list_barang.php" class="small-box-footer">More info <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span></a>
+            <a href="list_barang.php" target="_blank" class="kotak_kecil-footer">More info <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span></a>
           </div>
         </div>
         <!-- ./col -->
@@ -278,7 +273,6 @@ $result = mysqli_query($koneksi, $query);
                        <th>Stok</th>
                    </tr>
                     </thead>
-
                    <?php
                       $no = 1;
                           while($row = mysqli_fetch_array($result))
@@ -304,9 +298,9 @@ $result = mysqli_query($koneksi, $query);
   </body>
  <?php include 'nav_admin/footer.php'; ?>
   </html>
-  <script type="text/javascript" src="../js/jquery.min.js"></script>
+  <!-- <script type="text/javascript" src="../js/jquery.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
-    <script type="text/javascript" src="../bar/app.js"></script>
+    <script type="text/javascript" src="../bar/app.js"></script> -->
 <script>
   $(document).ready(function() {
     $('#mydata').dataTable();
