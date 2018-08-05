@@ -38,7 +38,7 @@ include '../assets/fungsi_tanggal.php';
                                         FROM penjualan p
                                         LEFT JOIN det_penjualan dp ON p.no_penjualan=dp.no_penjualan
                                         LEFT JOIN barang b ON dp.kd_barang=b.kd_barang
-                                        GROUP BY p.no_penjualan ORDER BY p.kd_transaksi DESC");
+                                        GROUP BY p.no_penjualan ORDER BY p.tanggal DESC");
             while($d = mysqli_fetch_array($data))
             {
               echo '

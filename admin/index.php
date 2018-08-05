@@ -141,7 +141,7 @@ $result = mysqli_query($koneksi, $query);
             </div>
             <div class="icon">
               
-              <span class="glyphicon glyphicon-book" aria-hidden="true"></span>
+              <span class="glyphicon glyphicon-folder-close" aria-hidden="true"></span>
               
             </div>
             <a href="list_barang.php" target="_blank" class="kotak_kecil-footer">More info <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span></a>
@@ -175,14 +175,14 @@ $result = mysqli_query($koneksi, $query);
           <div class="kotak_kecil bg-yellow" style="background-color:#F39C12;">
             <div class="inner">
              <?php
-            $jumlah_record = mysqli_query($koneksi, "SELECT COUNT(*) AS jumlah from pembelian");
+            $jumlah_record = mysqli_query($koneksi, "SELECT SUM(jumlah) as total FROM `det_penjualan`");
             $jum = mysqli_fetch_array($jumlah_record);
             echo '
-            <h3>' . $jum['jumlah'] . '</h3>';
+            <h3>' . $jum['total'] . '</h3>';
 
             ?>
 
-              <p>Total Pembelian </p>
+              <p>Total Barang Terjual </p>
             </div>
             <div class="icon">
               <span class="glyphicon glyphicon-shopping-cart"></span>
@@ -211,15 +211,106 @@ $result = mysqli_query($koneksi, $query);
             </div>
             <a href="list_barang.php" target="_blank" class="kotak_kecil-footer">More info <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span></a>
           </div>
+        </div>        
+      </div>
+    </section>
+<!-- akhir box kecil pertama -->
+        <!-- Main content -->
+    <section class="content">
+      <!-- Small boxes (Stat box) -->
+      <div class="row">
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="kotak_kecil bg-aqua" style="background-color:#46e4e2;">
+            <div class="inner">
+             <?php
+            $jumlah_record = mysqli_query($koneksi, "SELECT COUNT(*) AS jumlah from barang");
+            $jum = mysqli_fetch_array($jumlah_record);
+            echo '
+            <h3>' . $jum['jumlah'] . '</h3>';
+
+            ?>
+
+              <p>Total Barang</p>
+            </div>
+            <div class="icon">
+              
+              <span class="glyphicon glyphicon-folder-close" aria-hidden="true"></span>
+              
+            </div>
+            <a href="list_barang.php" target="_blank" class="kotak_kecil-footer">More info <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span></a>
+          </div>
+        </div>
+
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="kotak_kecil bg-green" style="background-color:#00A65A;">
+            <div class="inner">
+            <?php
+            $jumlah_record = mysqli_query($koneksi, "SELECT COUNT(*) AS jumlah from supplier");
+            $jum = mysqli_fetch_array($jumlah_record);
+            echo '
+            <h3>' . $jum['jumlah'] . '</h3>';
+
+            ?>
+
+              <p>Total Supplier</p>
+            </div>
+            <div class="icon">
+              <span class="glyphicon glyphicon-user"></span>
+            </div>
+            <a href="list_barang.php" target="_blank" class="kotak_kecil-footer">More info <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span></a>
+          </div>
         </div>
         <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="kotak_kecil bg-yellow" style="background-color:#F39C12;">
+            <div class="inner">
+             <?php
+            $jumlah_record = mysqli_query($koneksi, "SELECT SUM(jumlah) as total FROM `det_penjualan`");
+            $jum = mysqli_fetch_array($jumlah_record);
+            echo '
+            <h3>' . $jum['total'] . '</h3>';
+
+            ?>
+
+              <p>Total Barang Terjual </p>
+            </div>
+            <div class="icon">
+              <span class="glyphicon glyphicon-shopping-cart"></span>
+            </div>
+            <a href="list_barang.php" target="_blank" class="kotak_kecil-footer">More info <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="kotak_kecil bg-red" style="background-color:#DD4B39;">
+            <div class="inner">
+            <?php
+            $jumlah_record = mysqli_query($koneksi, "SELECT tanggal,COUNT(*) AS harian FROM penjualan WHERE tanggal=DATE(NOW()) GROUP BY tanggal");
+
+            $jum = mysqli_fetch_array($jumlah_record);
+            echo '
+            <h3>' . $jum['harian'] . '</h3>';
+
+            ?>
+
+              <p>Total Penjualan Hari Ini</p>
+            </div>
+            <div class="icon">
+              <span class=" glyphicon glyphicon-piggy-bank "></span>
+            </div>
+            <a href="list_barang.php" target="_blank" class="kotak_kecil-footer">More info <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span></a>
+          </div>
+        </div>        
       </div>
-      <!-- /.row -->
-      
-        </section>
-        <!-- right col -->
-      </div>
+    </section>
+  </div>
       <!-- /.row (main row) -->
+
 
 
 
