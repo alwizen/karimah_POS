@@ -26,44 +26,93 @@ $result = mysqli_query($koneksi, $query);
            <div class="row "style="padding-top:40px;">
                 <div class="col-md-4 col-sm-4 col-xs-6">
                         <div class="panel panel-primary">
-                            <div class="panel-heading">
-                             <span class="glyphicon glyphicon-pushpin"></span> Informasi
-                            </div>
+                            <div class="panel-heading"><span class="glyphicon glyphicon-bookmark"></span> Informasi Penjualan / <?php $tgl=date('l, d-m-Y'); echo'<b class="text-danger bg-warning">'. $tgl.'</b>';?></div>
                             <div class="panel-body">
-                              <strong>
-                                <?php
-                              $tgl=date('l, d M Y');
-                              echo $tgl;
-                              ?>
-                              </strong>
-                                <p>
-                                   Nama User : <strong><?php echo $nama;?></strong>
-                                </p>
-                                <!-- info penjualan hari ini -->
-                                <?php
-                                $jumlah_record = mysqli_query($koneksi, "SELECT tanggal,COUNT(*) AS harian FROM penjualan WHERE tanggal=DATE(NOW()) GROUP BY tanggal");
+                              <style>
+                                table {
+                                        width: 100%;
+                                    }
 
-                                $jum = mysqli_fetch_array($jumlah_record);
-                                echo '
-                                <p>Penjualan Hari ini : <b>' . $jum['harian'] . '</b></p>';
-                                ?>
-                                <!-- akhir  -->
+                                    tr {
+                                        height: 37px;
+                                    }
+                              </style>
+                              <table class="table-striped">
                                 
-                                <!-- penjualan bulan ini -->
-                                <?php
-                                $jumlah_record = mysqli_query($koneksi, "SELECT CONCAT(YEAR(tanggal),'/',MONTH(tanggal)) AS bulanan, COUNT(*) AS jml FROM penjualan WHERE CONCAT(YEAR(tanggal),'/',MONTH(tanggal))=CONCAT(YEAR(NOW()),'/',MONTH(NOW())) GROUP BY YEAR(tanggal),MONTH(tanggal)");
+                                <tr>
+                                  <td>Nama User</td>
+                                  <td>:  </td>
+                                  <td> <strong> <?php echo $nama; ?> </strong></td>
+                                </tr>
 
-                                $jum = mysqli_fetch_array($jumlah_record);
-                                echo '
-                                <p>Penjualan Bulan ini : <b>' . $jum['jml'] . '</b></p>';
-                                ?>
-                                <!-- akhir -->
+                                 <tr>
+                                  <td>Total Barang</td>
+                                  <td>:  </td>
+                                  <?php
+                                  $jumlah_record = mysqli_query($koneksi, "SELECT COUNT(*) as total FROM `barang`");
+                                  $jum = mysqli_fetch_array($jumlah_record);
+                                  echo '
+                                  <td><b>' . $jum['total'] . ' </b>Barang</td>';
+                                  ?>                                
+                                </tr>
 
+                                <tr>
+                                  <td>Total Pelanggan</td>
+                                  <td>:  </td>
+                                  <?php
+                                  $jumlah_record = mysqli_query($koneksi, "SELECT COUNT(*) as total FROM `pelanggan`");
+                                  $jum = mysqli_fetch_array($jumlah_record);
+                                  echo '
+                                  <td><b>' . $jum['total'] . ' </b>Pelanggan</td>';
+                                  ?>                                
+                                </tr>
 
+                                <tr>
+                                  <td>Barang Terjual</td>
+                                  <td>:  </td>
+                                  <?php
+                                  $jumlah_record = mysqli_query($koneksi, "SELECT SUM(jumlah) as total FROM `det_penjualan`");
+                                  $jum = mysqli_fetch_array($jumlah_record);
+                                  echo '
+                                  <td><b>' . $jum['total'] . ' </b>Barang</td>';
+                                  ?>                                
+                                </tr>
 
+                                <tr>
+                                  <td>Penjualan Hari ini</td>
+                                  <td>:  </td>
+                                  <?php
+                                  $jumlah_record = mysqli_query($koneksi, "SELECT tanggal,COUNT(*) AS harian FROM penjualan WHERE tanggal=DATE(NOW()) GROUP BY tanggal");
+                              
+                                  $jum = mysqli_fetch_array($jumlah_record);
+                                  echo '
+                                  <td><b>' . $jum['harian'] . '</b> Tranasaksi</td>';
+                                  ?>
+                                </tr>
+
+                                <tr>
+                                  <td>Total Pemasukkan</td>
+                                  <td>:  </td>
+                                   <?php
+                                    $total = 0;
+                                    $jumlah_record = mysqli_query($koneksi, "SELECT
+                                                                            nama_barang,
+                                                                            harga_jual,
+                                                                            SUM(jumlah*harga_jual) as total
+                                                                            FROM penjualan p 
+                                                                            LEFT JOIN det_penjualan dp ON p.id_penjualan=dp.id_penjualan 
+                                                                            LEFT JOIN barang b ON dp.kd_barang=b.kd_barang
+                                                                            GROUP by nama_barang ORDER BY p.kd_penjualan ASC");
+                                    $jum = mysqli_fetch_array($jumlah_record);
+                                    $total += $jum['total'];
+                                    echo '
+                                  <td><b>' . Rp($jum['total']) . '</b></td>';
+                                  ?>
+                                </tr>                            
+
+                              </table>
                             </div>
-                            
-                        </div>
+                          </div>
                     </div>
                 <div class="col-md-8 col-sm-4 col-xs-6">
                         <div class="panel panel-primary">

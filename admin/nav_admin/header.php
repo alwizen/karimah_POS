@@ -109,7 +109,7 @@ $nama = ( isset($_SESSION['nama_u']) ) ? $_SESSION['nama_u'] : '';
         }
         body {
             margin-top: 80px;
-            margin-bottom: 100px;
+            margin-bottom: 50px;
         }
         /* .footer{
             height:50px;

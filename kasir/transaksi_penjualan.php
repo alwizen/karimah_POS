@@ -98,6 +98,7 @@ include '../koneksi.php';
                     </div><!-- /.col-lg-6 -->
                     <div class="col-lg-2">
                         <button class="btn btn-primary" type="button" id="checkout">Bayar</button>
+                          <!-- <a href="cari.php" target="_BLANK" class="btn btn-primary" type="button" id="checkout">Bayar</a> -->
                         <a href="kasir/index.php" class="btn btn-default">Batal</a>
                       </div>
                   </div><!-- /.row -->
@@ -207,7 +208,8 @@ include '../koneksi.php';
 
                 request.success(function(response) {
                     alert("Transaksi Berhasil!");
-                    location.reload();
+                    window.open('href','_blank');
+                    document.location.reload(true);
                 });
 
                 request.fail(function(error) {

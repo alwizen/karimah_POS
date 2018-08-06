@@ -58,7 +58,7 @@ $query=mysqli_query($koneksi,"SELECT
                                         LEFT JOIN det_penjualan dp ON p.no_penjualan=dp.no_penjualan
                                         LEFT JOIN barang b ON dp.kd_barang=b.kd_barang
                                         WHERE p.tanggal BETWEEN '".$_POST["dari"]."' AND '".$_POST["sampai"]."' 
-                                        GROUP BY p.no_penjualan ORDER BY p.kd_transaksi DESC");
+                                         GROUP BY no_det_penjualan ORDER BY p.tanggal DESC");
 while($lihat=mysqli_fetch_array($query)){
 	$pdf->Cell(1, 0.8, $no , 1, 0, 'C');
      $pdf->Cell(4, 0.8, $lihat['kd_transaksi'],1, 0, 'C');

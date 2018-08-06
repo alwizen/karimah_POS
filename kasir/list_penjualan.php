@@ -44,9 +44,11 @@ include '../assets/fungsi_tanggal.php';
                                     <td>' . tgl_indo($d['tanggal']) . '</td>
                                     <td>' . Rp($d['grand_total']) . '</td>
                                     <td>
-                                      <center><button type="button" class="btn btn-primary" onclick="getDetailTransaksi(' . $d['no_penjualan'] . ')"><span class="glyphicon glyphicon-paperclip"></span>  Detail</button></center>
-                                    </td>
-                                  </tr>
+                                      <center><button type="button" class="btn btn-primary" onclick="getDetailTransaksi(' . $d['no_penjualan'] . ')"><span class="glyphicon glyphicon-paperclip"></span>  Detail</button>
+                                      <a href="cetak.php?no_penjualan='. $d["no_penjualan"].'" target="_BLANK" class="btn btn-warning"><span class="glyphicon glyphicon-print"> Cetak</span></a>
+                                      </center>
+                                      </td>
+                                  </tr> 
                                   ';
                                 }
                                 ?>

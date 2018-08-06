@@ -13,7 +13,7 @@ $query = "SELECT
           FROM penjualan p 
           LEFT JOIN det_penjualan dp ON p.no_penjualan=dp.no_penjualan 
           LEFT JOIN barang b ON dp.kd_barang=b.kd_barang
-          GROUP BY p.no_penjualan ORDER BY p.tanggal DESC";
+          GROUP BY no_det_penjualan ORDER BY p.tanggal DESC";
 $sql = mysqli_query($koneksi, $query);
 ?>
 
