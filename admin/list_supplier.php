@@ -66,7 +66,4 @@ $result = mysqli_query($koneksi, $query);
         ]
     } );
 } );
-  $(document).ready(function() {
-    $('#mydata').dataTable();
-  });
 </script>

@@ -11,7 +11,7 @@
         }
     </style>
 <?php 
-$connect = mysqli_connect("localhost", "root", "BAba55ko", "karimah");
+include '../../koneksi.php';
 $query = "SELECT
         nama_barang,
 		SUM(jumlah) as jml
@@ -19,9 +19,9 @@ $query = "SELECT
 		LEFT JOIN det_penjualan dp ON p.no_penjualan=dp.no_penjualan 
 		LEFT JOIN barang b ON dp.kd_barang=b.kd_barang
 		GROUP by nama_barang ORDER BY p.kd_transaksi ASC";
-$result = mysqli_query($connect, $query);
+$result = mysqli_query($koneksi, $query);
 ?>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" src="../../js/gChart.js"></script>
 <script type="text/javascript">
     google.charts.load('current', {
         'packages': ['corechart']
@@ -67,10 +67,10 @@ $result = mysqli_query($connect, $query);
 
 
     <!-- javascript -->
-    <script type="text/javascript" src="../../js/jquery.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
-
-    <script type="text/javascript" src="app.js"></script>
+    <script src="../../js/jquery.min.js"></script>
+    <script src="../../js/gChart.js"></script>
+    <script src="../../js/chart.js"></script>
+    <script src="app.js"></script>
 </body>
 
 </html>

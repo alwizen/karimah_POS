@@ -16,7 +16,6 @@ $query = "SELECT
           FROM `barang` b
           LEFT JOIN supplier s ON b.id_supplier=s.id_supplier
           GROUP BY b.kd_barang ORDER BY `nama_barang` ASC";
-
 $result = mysqli_query($koneksi, $query);
 ?>
 
@@ -57,17 +56,6 @@ $result = mysqli_query($koneksi, $query);
                                 </tr>
 
                                 <tr>
-                                  <td>Total Pelanggan</td>
-                                  <td>:  </td>
-                                  <?php
-                                  $jumlah_record = mysqli_query($koneksi, "SELECT COUNT(*) as total FROM `pelanggan`");
-                                  $jum = mysqli_fetch_array($jumlah_record);
-                                  echo '
-                                  <td><b>' . $jum['total'] . ' </b>Pelanggan</td>';
-                                  ?>                                
-                                </tr>
-
-                                <tr>
                                   <td>Barang Terjual</td>
                                   <td>:  </td>
                                   <?php
@@ -91,18 +79,15 @@ $result = mysqli_query($koneksi, $query);
                                 </tr>
 
                                 <tr>
-                                  <td>Total Pemasukkan</td>
+                                  <td>Pemasukkan Hari Ini</td> 
                                   <td>:  </td>
                                    <?php
                                     $total = 0;
-                                    $jumlah_record = mysqli_query($koneksi, "SELECT
-                                                                            nama_barang,
-                                                                            harga_jual,
-                                                                            SUM(jumlah*harga_jual) as total
-                                                                            FROM penjualan p 
-                                                                            LEFT JOIN det_penjualan dp ON p.id_penjualan=dp.id_penjualan 
-                                                                            LEFT JOIN barang b ON dp.kd_barang=b.kd_barang
-                                                                            GROUP by nama_barang ORDER BY p.kd_penjualan ASC");
+                                    $jumlah_record = mysqli_query($koneksi, "SELECT tanggal,sum(harga*jumlah) AS total 
+                                                          FROM penjualan p
+                                                          LEFT JOIN det_penjualan dp ON p.no_penjualan = dp.no_penjualan
+                                                          WHERE tanggal=DATE(NOW()) 
+                                                          GROUP BY tanggal");
                                     $jum = mysqli_fetch_array($jumlah_record);
                                     $total += $jum['total'];
                                     echo '

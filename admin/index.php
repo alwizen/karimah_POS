@@ -127,23 +127,20 @@ include '../assets/fungsi_rupiah.php';
         <!-- /.col -->
         <div class="col-md-3 col-sm-6 col-xs-12">
           <div class="info-box">
-            <span class="info-box-icon bg-purple"><span style="color: #fff;" class="glyphicon glyphicon-usd"></span></span>
+            <span class="info-box-icon bg-purple"><span style="color: #fff;" class="glyphicon glyphicon-calendar"></span></span>
 
             <div class="info-box-content">
                 <?php
                 $total = 0;
-                $jumlah_record = mysqli_query($koneksi, "SELECT
-                                                        nama_barang,
-                                                        harga_jual,
-                                                    SUM(jumlah*harga_jual) as total
-                                                    FROM penjualan p 
-                                                    LEFT JOIN det_penjualan dp ON p.no_penjualan=dp.no_penjualan 
-                                                    LEFT JOIN barang b ON dp.kd_barang=b.kd_barang
-                                                    GROUP by nama_barang ORDER BY p.kd_transaksi ASC");
+                $jumlah_record = mysqli_query($koneksi, "SELECT tanggal,sum(harga*jumlah) AS total 
+                                                          FROM penjualan p
+                                                          LEFT JOIN det_penjualan dp ON p.no_penjualan = dp.no_penjualan
+                                                          WHERE tanggal=DATE(NOW()) 
+                                                          GROUP BY tanggal");
                 $jum = mysqli_fetch_array($jumlah_record);
-                $total += $row['total'];
+                $total += $jum['total'];
                 echo '
-	            <a href="list_trans_penjualan.php" target="_blank" style="color: #000;"><span class="info-box-text">Total Pemasukkan</span></a>
+	            <a href="list_trans_penjualan.php" target="_blank" style="color: #000;"><span class="info-box-text">Pemasukkan Hari Ini</span></a>
 	            <span class="info-box-number">' . number_format($jum['total']) . '</span>';
                 ?>
               </div>
@@ -162,7 +159,7 @@ include '../assets/fungsi_rupiah.php';
 
             <div class="info-box-content">
                <?php
-              $jumlah_record = mysqli_query($koneksi, "SELECT COUNT(*) AS jumlah from pembelian");
+              $jumlah_record = mysqli_query($koneksi, "SELECT COUNT(*) AS jumlah from det_pembelian");
               $jum = mysqli_fetch_array($jumlah_record);
               echo '
 	            <a href="list_trans_pembelian.php" target="_blank" style="color: #000;"><span class="info-box-text">Total Pembelian</span></a>
@@ -210,7 +207,7 @@ include '../assets/fungsi_rupiah.php';
       <div class="panel-body">
         <table class="table table-bordered table-condensed " id="mydata">
                 <thead>
-                <tr class="active">
+                <tr class="danger">
                        <th>#</th>
                        <th>Nama Barang</th>
                        <th>Supplier</th>
@@ -267,6 +264,11 @@ include '../assets/fungsi_rupiah.php';
 
 <script>
   $(document).ready(function() {
-    $('#mydata').dataTable();
+    $('#mydata').dataTable({
+      "language" :{
+        "url" : "../js/indo.json"
+      }
+    });
+    responsive: true
   });
 </script>

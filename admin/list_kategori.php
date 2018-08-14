@@ -42,8 +42,12 @@ $result = mysqli_query($koneksi, $query);
 </div>
 <?php include ('nav_admin/footer.php'); ?>
 <script>
-    $(document).ready(function() {
-    $('#mydata').dataTable();
+  $(document).ready(function() {
+    $('#mydata').dataTable({
+      "language" :{
+        "url" : "../js/indo.json"
+      }
+    });
     responsive: true
   });
 </script>

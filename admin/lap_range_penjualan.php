@@ -1,4 +1,6 @@
 <?php 
+session_start();
+$nama = ( isset($_SESSION['nama_u']) ) ? $_SESSION['nama_u'] : '';
 include '../koneksi.php';
 include '../assets/fungsi_tanggal.php';
 include '../assets/fungsi_rupiah.php';
@@ -72,6 +74,14 @@ while($lihat=mysqli_fetch_array($query)){
 }
 $pdf->Cell(20, 0.8, "Grand Total Pemasukkan ", 1, 0,'C');          
 $pdf->Cell(4, 0.8, Rp($grand_total), 1, 0,'C');
+$pdf->SetFont('Arial','B',10);
+$pdf->ln(1);
+$pdf->MultiCell(19.5,2,'Pekalongan, '.tgl_indo(date("Y-m-d")).'',0,'L');
+$pdf->SetFont('Arial','B',10);
+$pdf->ln(1);
+$pdf->ln(1);
+$pdf->SetFont('Arial','B',10);
+$pdf->MultiCell(19.5,0.8,' '.$nama.' ',0,'L');
 $pdf->Output("Laporan Penjualan.pdf","I");
 
 ?>

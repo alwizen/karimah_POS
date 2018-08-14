@@ -3,7 +3,7 @@ $title = "Data Barang";
 include 'nav_admin/header.php';
 include '../assets/fungsi_rupiah.php';
  ?>
-<link rel="stylesheet" href="../css/dataTables.bootstrap.min.css">
+<link rel="stylesheet" href="../css/dataTables.semanticui.css">
 <div class="container">
 
 <!-- peringatan stok barang -->
@@ -91,17 +91,19 @@ while($q = mysqli_fetch_array($data)){
                 ';
                 }
                 ?>
-
         </tbody>
       </table>
     </div>
-
      <?php
 include 'nav_admin/footer.php';
   ?>
 <script>
   $(document).ready(function() {
-    $('#mydata').dataTable();
+    $('#mydata').dataTable({
+      "language" :{
+        "url" : "../js/indo.json"
+      }
+    });
     responsive: true
   });
 </script>

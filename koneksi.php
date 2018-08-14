@@ -1,16 +1,16 @@
 <?php
- $url  = 'http://127.0.0.1/karimah'; 
+ $url  = 'http://localhost/karimah'; 
  $host = 'localhost';  
  $user = 'root';  
  $pass = 'BAba55ko';
- $name = 'karimah';  
+ $name = 'hijabStore';  
 
  $koneksi = mysqli_connect($host,$user,$pass,$name);  //koneksi Database
 
  //Check koneksi, berhasil atau tidak
- if( $koneksi->connect_error )
- {
-  die( 'Oops!! Koneksi Gagal : '. $koneksi->connect_error );
- }
+if (mysqli_connect_errno()){
+	echo "Koneksi database gagal : " . mysqli_connect_error();
+}
+ 
  $url = rtrim($url,'/');
  ?>

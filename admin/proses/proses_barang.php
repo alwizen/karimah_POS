@@ -28,9 +28,9 @@ elseif ($act=='input'){
 }
 
 elseif ($act=='update'){
-		  $kd_barang	   = $_POST['kd_barang'];
-      $nama_barang   = $_POST['nama_barang'];
-      $model  		   = $_POST['model'];
+		$kd_barang	   = $_POST['kd_barang'];
+	    $nama_barang   = $_POST['nama_barang'];
+	    $model  	   = $_POST['model'];
     	$id_supplier   = $_POST['id_supplier'];
     	$harga_beli    = $_POST['harga_beli'];
     	$harga_jual    = $_POST['harga_jual'];
