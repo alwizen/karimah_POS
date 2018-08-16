@@ -6,6 +6,7 @@
  $name = 'hijabStore';  
 
  $koneksi = mysqli_connect($host,$user,$pass,$name);  //koneksi Database
+ mysqli_select_db($koneksi, $name);
 
  //Check koneksi, berhasil atau tidak
 if (mysqli_connect_errno()){

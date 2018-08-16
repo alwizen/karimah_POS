@@ -37,7 +37,7 @@ include '../koneksi.php';
 
                         </select>
                      </div>
-                     <div class="row">
+                  <div class="row">
                   <div class="col-xs-2 form-group">
                      <label class="control-label">Jumlah</label>
                      <input type="text" class="form-control" placeholder="Qty .." name="jumlah" id="jumlah" required>

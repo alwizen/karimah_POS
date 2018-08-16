@@ -175,6 +175,7 @@ $nama = ( isset($_SESSION['nama_u']) ) ? $_SESSION['nama_u'] : '';
                   <a href="#"class="dropdown-toggle" data-toggle="dropdown" ><strong><span class="glyphicon glyphicon-share"></span> Lainnya</strong> <b class="caret"></b></a>
                   <ul class="dropdown-menu">
                     <li><a href="tambah_user.php">Tambah User</a></li>
+                    <li><a href="b_n_r.php">Backup & Restore</a></li>
                     <li role="separator" class="divider"></li>
                     <li class=""><a href="../logout.php" onclick="return confirm('Yakin ingin Logout?')"><span class="glyphicon glyphicon-off"></span> Keluar (<b> <?php echo $nama; ?> </b>)</a></li>
                   </ul>
