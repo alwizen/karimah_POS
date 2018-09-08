@@ -3,7 +3,7 @@ $title = "Transaksi Penjualan ";
 include 'nav_kasir/header.php';
 include '../koneksi.php';
 // include '../assets/fungsi_tanggal.php';
- ?>
+?>
 <link rel="stylesheet" href="../css/select2.min.css">
 <link rel="stylesheet" href="../css/select2-bootstrap.min.css">
 <div class="container" style="margin-top: 50px;">
@@ -27,18 +27,18 @@ include '../koneksi.php';
                      </div>
 
                     <?php
-                      $query = "SELECT * FROM barang";
-                      $result = mysqli_query($koneksi, $query);
-                     ?>
+                    $query = "SELECT * FROM barang";
+                    $result = mysqli_query($koneksi, $query);
+                    ?>
 
                   <div class="col-xs-5 form-group">
                      <label>Nama Barang</label>
                         <select class="form-control item" id="item" name="nama_barang">
-                            <?php while($row1 = mysqli_fetch_array($result)):;?>
+                            <?php while ($row1 = mysqli_fetch_array($result)) :; ?>
 
-                            <option value="<?php echo $row1['kd_barang'];?>" data-price="<?php echo $row1["harga_jual"] ?>"><?php echo $row1['nama_barang'];?></option>
+                            <option value="<?php echo $row1['kd_barang']; ?>" data-price="<?php echo $row1["harga_jual"] ?>"><?php echo $row1['nama_barang']; ?></option>
 
-                            <?php endwhile;?>
+                            <?php endwhile; ?>
 
                         </select>
                      </div>
@@ -155,7 +155,7 @@ include '../koneksi.php';
               var url = "cek_stok.php?id="+$("#item").val();
               $.get(url,function(response){
                 console.log(response);
-                var stok = parseInt(response.stok) - parseInt($('#total_barang').val());
+                var stok = parseInt(response.stok);
                 var jumlah = parseInt($("#jumlah").val()); 
 
                 if (stok < jumlah ) {
