@@ -25,7 +25,7 @@ $query = "SELECT
               'nama_barang' =>$row['nama_barang'] ,
               'model' =>$row['model'],
               'harga_jual' =>Rp($row['harga_jual']),
-          	'jumlah' 		  =>$row['jumlah']
+          	  'jumlah' 		  =>$row['jumlah']
           );
 
           } 

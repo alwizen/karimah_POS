@@ -152,25 +152,38 @@ include '../koneksi.php';
 
           $("#add_item").on("click", function() {
               // Add data to order_items before it's submitted
-              $order_items.push({
-                "kd_barang": $("#item").val(),
-                "jumlah": $("#jumlah").val(),
-                "harga": $("#item option:selected").attr("data-price"),
-                "temp_id":$number
+              var url = "cek_stok.php?id="+$("#item").val();
+              $.get(url,function(response){
+                console.log(response);
+                var stok = parseInt(response.stok) - parseInt($('#total_barang').val());
+                var jumlah = parseInt($("#jumlah").val()); 
 
-              });
+                if (stok < jumlah ) {
+                  alert("stok tidak cukup");
+                  return false;
+                }else{
+                   //console.log(stok);
+                   $order_items.push({
+                      "kd_barang": $("#item").val(),
+                      "jumlah": $("#jumlah").val(),
+                      "harga": $("#item option:selected").attr("data-price"),
+                      "temp_id":$number
 
-              $total_price += (parseInt($("#jumlah").val()) * parseInt($("#item option:selected").attr("data-price")));
-              // Add row to table
-             $("#order_items_table > tbody").append("<tr class='row_barang'><td>" + ($order_items.length + 0) + "</td><td>" + $("#item option:selected").text()  + "</td><td>" + $("#item option:selected").attr("data-price") + "</td><td>" + $("#jumlah").val() + "</td><td>" + (parseInt($("#jumlah").val()) * parseInt($("#item option:selected").attr("data-price"))) + "</td><td> <button data-id='"+$number+"' class='btn btn-danger hapus_item'>Hapus</button> </td></tr>");
+                    });
 
-              // Reset selected item and quantity
-              $("#jumlah").val("");
-              $("#item").prop("selectedIndex", 0);
+                    $total_price += (parseInt($("#jumlah").val()) * parseInt($("#item option:selected").attr("data-price")));
+                    // Add row to table
+                  $("#order_items_table > tbody").append("<tr class='row_barang'><td>" + ($order_items.length + 0) + "</td><td>" + $("#item option:selected").text()  + "</td><td>" + $("#item option:selected").attr("data-price") + "</td><td>" + $("#jumlah").val() + "</td><td>" + (parseInt($("#jumlah").val()) * parseInt($("#item option:selected").attr("data-price"))) + "</td><td> <button data-id='"+$number+"' class='btn btn-danger hapus_item'>Hapus</button> </td></tr>");
 
-              console.log($order_items);
-              $number++;
-              formBarang.getTotal();
+                    // Reset selected item and quantity
+                    $("#jumlah").val("");
+                    $("#item").prop("selectedIndex", 0);
+
+                    console.log($order_items);
+                    $number++;
+                    formBarang.getTotal();
+                }
+              },'json')  
           });
 
           $("#total_dibayarkan").on("keyup", function() {
@@ -184,14 +197,19 @@ include '../koneksi.php';
           });
            $(document).on("click", ".hapus_item", function(e){
             // console.log('hapus');
-            var tempId = $(this).attr('data-id');
-            console.log(tempId);
-            var temp_order_items = $order_items.filter(function(obj) {
-              return obj.temp_id != tempId;
-            });
-            $order_items = temp_order_items;
-            $(this).parent().parent().remove();
-            formBarang.getTotal();
+            var del = confirm('Apakah Anda yakin akan menghapus data ini?');
+            if (del == true) {
+             var tempId = $(this).attr('data-id');
+                console.log(tempId);
+                var temp_order_items = $order_items.filter(function(obj) {
+                  return obj.temp_id != tempId;
+                });
+                $order_items = temp_order_items;
+                $(this).parent().parent().remove();
+                formBarang.getTotal(); 
+            }else{
+              return false;
+            }           
           });
 
           $("#checkout").on("click", function() {
@@ -199,7 +217,6 @@ include '../koneksi.php';
               if ($order_items.length < 1) {
                 alert("Anda belum memasukkan item!");
               } else {
-
                 var totalDibayar = ($('#total_dibayarkan').val() == "" || !isNaN($('#total_dibayarkan').val())) ? parseInt($('#total_dibayarkan').val()) : 0;
 
                 if(totalDibayar > 0) {
@@ -227,9 +244,6 @@ include '../koneksi.php';
                   //klo 0 tampilkan notifikasi
                   alert("Harus diisi");
                 }
-
-
-
               }
           });
       });
