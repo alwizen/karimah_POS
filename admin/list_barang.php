@@ -9,19 +9,19 @@ include '../assets/fungsi_rupiah.php';
 <!-- peringatan stok barang -->
 <?php
 include '../koneksi.php';
- $data = mysqli_query($koneksi,"SELECT
-b.kd_barang,
-b.model,
-b.nama_barang,
-b.harga_beli,
-b.harga_jual,
-s.nama_supplier,
-(SELECT IF(SUM(dp.jumlah) IS NULL,0,SUM(dp.jumlah)) FROM det_pembelian dp  WHERE dp.kd_barang = b.kd_barang) as jml,
-((SELECT IF(SUM(dp.jumlah) IS NULL,0,SUM(dp.jumlah)) FROM det_pembelian dp  WHERE dp.kd_barang = b.kd_barang) - (SELECT (IF(SUM(dp2.jumlah) IS NULL,0,SUM(dp2.jumlah)))
-FROM det_penjualan dp2 WHERE dp2.kd_barang = b.kd_barang)) as stok
-FROM `barang` b
-LEFT JOIN supplier s ON b.id_supplier=s.id_supplier
-GROUP BY b.kd_barang ORDER BY `nama_barang` ASC");
+$data = mysqli_query($koneksi,"SELECT
+                              b.kd_barang,
+                              b.model,
+                              b.nama_barang,
+                              b.harga_beli,
+                              b.harga_jual,
+                              s.nama_supplier,
+                              (SELECT IF(SUM(dp.jumlah) IS NULL,0,SUM(dp.jumlah)) FROM det_pembelian dp  WHERE dp.kd_barang = b.kd_barang) as jml,
+                              ((SELECT IF(SUM(dp.jumlah) IS NULL,0,SUM(dp.jumlah)) FROM det_pembelian dp  WHERE dp.kd_barang = b.kd_barang) - (SELECT (IF(SUM(dp2.jumlah) IS NULL,0,SUM(dp2.jumlah)))
+                              FROM det_penjualan dp2 WHERE dp2.kd_barang = b.kd_barang)) as stok
+                              FROM `barang` b
+                              LEFT JOIN supplier s ON b.id_supplier=s.id_supplier
+                              GROUP BY b.kd_barang ORDER BY `nama_barang` ASC");
 while($q = mysqli_fetch_array($data)){
   if($q['stok']<=50){
     ?>
@@ -86,8 +86,8 @@ while($q = mysqli_fetch_array($data)){
 
                       <a href="proses/proses_barang.php?act=delete&kd_barang= '.$row['kd_barang'].'" class="btn btn-danger"  onclick ="if (!confirm(\'Apakah Anda yakin akan menghapus data ini?\')) return false;"><span class="glyphicon glyphicon-trash"></span></a>
                     </center>
-                    </td>
-                  </tr>
+                  </td>
+                </tr>
                 ';
                 }
                 ?>
