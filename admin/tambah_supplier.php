@@ -17,13 +17,13 @@ include 'nav_admin/header.php';
     <div class="form-group">
       <label class="control-label col-sm-2" for="">Alamat :</label>
       <div class="col-sm-6">          
-        <textarea type="text" class="form-control" id="" placeholder="Alamat supplier" name="alamat"></textarea>
+        <textarea type="text" class="form-control" id="" placeholder="Alamat supplier" name="alamat" required></textarea>
       </div>
     </div>
     <div class="form-group">
       <label class="control-label col-sm-2" for="">No Telp :</label>
       <div class="col-sm-6">          
-        <input type="text" class="form-control" id="" placeholder="No Telp" name="no_tlp">
+        <input type="text" class="form-control" id="no_tlp" placeholder="No Telp" name="no_tlp" required>
       </div>
     </div>
 
@@ -38,7 +38,13 @@ include 'nav_admin/header.php';
 </div>
 
 </div>
-
+ <script src="../js/jquery.js"></script>
+   <script src="../js/jquery.mask.js"></script>
+  <script type="text/javascript">
+            $(document).ready(function(){
+              $('#no_tlp').mask('0000-0000-0000', {reverse: true});
+              });
+        </script>
 
 <?php 
 include 'nav_admin/footer.php';

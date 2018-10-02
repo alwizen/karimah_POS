@@ -44,7 +44,7 @@ if( strlen($username) < 2 )
   $row =$query->fetch_assoc();
 
   //data nama disimpan di session browser
-  $_SESSION['nama_u'] = $row['nama'];
+  $_SESSION['nama_u'] = $row['nama']; // hak akses kasir
   $_SESSION['akses']  = $row['level'];
 
   if( $row['level'] === 'admin')

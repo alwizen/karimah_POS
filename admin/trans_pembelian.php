@@ -37,7 +37,7 @@ include '../koneksi.php';
 
                         </select>
                      </div>
-                     <div class="row">
+                  <div class="row">
                   <div class="col-xs-2 form-group">
                      <label class="control-label">Jumlah</label>
                      <input type="text" class="form-control" placeholder="Qty .." name="jumlah" id="jumlah" required>
@@ -47,7 +47,7 @@ include '../koneksi.php';
                    <div class="col-xs-1 form-group">
 
                      <label class="control-label"></label>
-                   <input type="button" id="add_item" value="Tambah Barang" class="btn btn-primary">
+                   <input type="button" id="add_item" value="Tambah Barang" class="btn btn-primary" disabled>
                  </div><br>
 
                  </div>
@@ -102,6 +102,14 @@ include '../koneksi.php';
        allowClear: true
         });
     });
+         $('#add_item').prop('disabled', true);
+          $("#jumlah").on("keyup", function() {
+              if ((this.value != '') && ($("#item").val() !='')) {
+                $('#add_item').prop('disabled', false);
+              } else {
+                $('#add_item').prop('disabled', true);
+              }
+          });
           $order_items = [];
           $total_price = 0;
           $number =1;
@@ -131,7 +139,7 @@ include '../koneksi.php';
 
               $total_price += (parseInt($("#jumlah").val()) * parseInt($("#item option:selected").attr("data-price")));
               // Add row to table
-              $("#order_items_table > tbody").append("<tr class='row_barang'><td>" + ($order_items.length + 1) + "</td><td>" + $("#item option:selected").text() + "</td><td>" + $("#jumlah").val() + "</td><td>" + (parseInt($("#jumlah").val()) * parseInt($("#item option:selected").attr("data-price"))) + "</td><td> <button data-id='"+$number+"' class='btn btn-danger hapus_item'>Hapus</button> </td></tr>");
+              $("#order_items_table > tbody").append("<tr class='row_barang'><td>" + ($order_items.length + 0) + "</td><td>" + $("#item option:selected").text() + "</td><td>" + $("#jumlah").val() + "</td><td>" + (parseInt($("#jumlah").val()) * parseInt($("#item option:selected").attr("data-price"))) + "</td><td> <button data-id='"+$number+"' class='btn btn-danger hapus_item'>Hapus</button> </td></tr>");
 
               // Reset selected item and quantity
               $("#jumlah").val("");

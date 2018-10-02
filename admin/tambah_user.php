@@ -21,16 +21,16 @@ include 'nav_admin/header.php'
         <div class="col-md-12 col-sm-12 col-xs-12 user-login-box">
           <form action="proses/proses_user.php?act=input" method="POST">
              <div class="form-group">
-               <input type="text" class="form-control" name="nama" placeholder="Name" id="nama">
+               <input type="text" class="form-control" name="nama" placeholder="Name" id="nama" required>
              </div>
           <div class="form-group">
-              <input type="text" class="form-control" name="username" placeholder="Username" id="username">
+              <input type="text" class="form-control" name="username" placeholder="Username" id="username" required>
           </div>
           <div class="form-group">
-              <input type="text" name="password" class="form-control" placeholder="Password" id="usr">
+              <input type="text" name="password" class="form-control" placeholder="Password" id="usr" required>
           </div>
           <div class="form-group">
-            <select name="level" class="form-control" id="">
+            <select required name="level" class="form-control" id="">
               <option value="admin">Admin</option>
               <option value="kasir">Kasir</option>
             </select>

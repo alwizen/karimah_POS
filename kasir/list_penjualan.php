@@ -5,12 +5,13 @@ include '../assets/fungsi_rupiah.php';
 include '../assets/fungsi_tanggal.php';
  ?>
 
+<link rel="stylesheet" href="../css/dataTables.bootstrap.min.css">
  <div class="container">
    <!-- Table -->
    <h3>Riwayat Penjualan</h3> <br>
-  <table class="table table-hover">
+  <table class="table table-hover table-bordered" id="mydata">
     <thead>
-      <tr>
+      <tr class="danger">
         <th>#</th>
         <th>No. Transaksi</th>
         <th>Tanggal</th>
@@ -18,6 +19,7 @@ include '../assets/fungsi_tanggal.php';
         <th>Action</th>
       </tr>
     </thead>
+    <tbody>
 
         <?php
           include '../koneksi.php';
@@ -33,25 +35,23 @@ include '../assets/fungsi_tanggal.php';
                                         FROM penjualan p
                                         LEFT JOIN det_penjualan dp ON p.no_penjualan=dp.no_penjualan
                                         LEFT JOIN barang b ON dp.kd_barang=b.kd_barang
-                                        GROUP BY p.no_penjualan ORDER BY p.kd_transaksi DESC");
-                            while($d = mysqli_fetch_array($data)){
-                         ?>
-
-                  <tbody>
-                    <tr>
-                      <td><?php echo $no++; ?></td>
-                      <td><?php echo $d['kd_transaksi']; ?></td>
-                      <td><?php echo tgl_indo($d['tanggal']); ?></td>
-                      <td><?php echo Rp($d['grand_total']); ?></td>
-                       <td>
-
-                          <button type="button" class="btn btn-info" onclick="getDetailTransaksi(<?php echo $d['no_penjualan']; ?>)">Detail</button>
-
-                       </td>
-                    </tr>
-                    <?php
-                  }
-                     ?>
+                                        GROUP BY p.no_penjualan ORDER BY p.tanggal DESC");
+                                while ($d = mysqli_fetch_array($data)) {
+                                  echo '
+                                  <tr>
+                                    <td>' . $no++ . '</td>
+                                    <td>' . $d['kd_transaksi'] . '</td>
+                                    <td>' . tgl_indo($d['tanggal']) . '</td>
+                                    <td>' . Rp($d['grand_total']) . '</td>
+                                    <td>
+                                      <center><button type="button" class="btn btn-primary" onclick="getDetailTransaksi(' . $d['no_penjualan'] . ')"><span class="glyphicon glyphicon-paperclip"></span>  Detail</button>
+                                      <a href="cetak.php?no_penjualan='. $d["no_penjualan"].'" target="_BLANK" class="btn btn-warning"><span class="glyphicon glyphicon-print"></span> Cetak</a>
+                                      </center>
+                                      </td>
+                                  </tr> 
+                                  ';
+                                }
+                                ?>
                 </tbody>
   </table>
 </div>
@@ -68,9 +68,9 @@ include '../assets/fungsi_tanggal.php';
         <h4 class="modal-title" id="judul"> </h4>
       </div>
       <div class="modal-body">
-          <table class="table table-stripped">
+          <table class="table table-stripped table-bordered">
             <thead>
-              <tr class="active">
+              <tr class="danger">
                 <th>Nama Barang</th>
                 <th>Model</th>
                 <th>Harga</th>
@@ -88,11 +88,19 @@ include '../assets/fungsi_tanggal.php';
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
-
   </div>
 </div>
 
+<?php include 'nav_kasir/footer.php'; ?>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/jquery-1.10.2.min.js"></script>
+<script src="../js/datatables.min.js"></script>
+
 <script>
+    $(document).ready(function() {
+    $('#mydata').dataTable();
+    responsive : true
+    });
   var getDetailTransaksi = function (no_penjualan) {
 
     $.get("aksi_dtl_penjualan.php?no_penjualan="+no_penjualan, function(response){
@@ -117,5 +125,3 @@ include '../assets/fungsi_tanggal.php';
   }
 </script>
 
- <?php
- include ('nav_kasir/footer.php'); ?>

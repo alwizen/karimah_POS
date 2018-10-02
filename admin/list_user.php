@@ -2,7 +2,6 @@
 $title = "Data User";
 include 'nav_admin/header.php'
 ?>
-  <!-- Bootstrap -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="custom.css">
  
@@ -51,7 +50,11 @@ include 'nav_admin/header.php'
 <?php include 'nav_admin/footer.php'; ?>
 <script>
     $(document).ready(function() {
-    $('#mydata').dataTable();
+    $('#mydata').dataTable({
+      "language" :{
+        "url" : "../js/indo.json"
+      }
+    });
     responsive: true
   });
 </script>

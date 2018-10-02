@@ -13,7 +13,7 @@ $query = "SELECT
           FROM penjualan p 
           LEFT JOIN det_penjualan dp ON p.no_penjualan=dp.no_penjualan 
           LEFT JOIN barang b ON dp.kd_barang=b.kd_barang
-          GROUP BY p.no_penjualan ORDER BY p.tanggal DESC";
+          GROUP BY no_det_penjualan ORDER BY p.tanggal DESC";
 $sql = mysqli_query($koneksi, $query);
 ?>
 
@@ -22,7 +22,9 @@ $sql = mysqli_query($koneksi, $query);
 <div class="container">
     <div class="panel panel-primary">
   <!-- Default panel contents -->
-      <div class="panel-heading"><strong>Laporan Penjualan</strong></div>
+      <div class="panel-heading"><strong>
+      <span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span>
+       Laporan Penjualan</strong></div>
       <div class="panel-body">
       <form action="lap_range_penjualan.php" method="post">
        <div class="col-md-2">
@@ -32,15 +34,15 @@ $sql = mysqli_query($koneksi, $query);
             <input type="date" name="sampai" id="sampai" class="form-control" required />
         </div>
         <div class="col-md-8">
-          <button class="btn btn-info" type="submit" formtarget="_blank"> <span class="glyphicon glyphicon-print"></span> Cetak</button>
+          <button class="btn btn-danger" type="submit" formtarget="_blank"> <span class="glyphicon glyphicon-print"></span> Cetak</button>
         </div>
         </form>
 
         <div class="clearfix"></div>
         <br/>
         <div id="purchase_order">
-            <table class="table table-bordered">
-              <tr class="active">
+            <table class="table table-bordered table-hover">
+              <tr class="danger">
                 <th>Kode Transaksi</th>
                 <th>Tanggal</th>
                 <th>Nama Barang</th>

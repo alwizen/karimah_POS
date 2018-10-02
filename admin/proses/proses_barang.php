@@ -1,9 +1,8 @@
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <?php
 include '../../koneksi.php';
 
 $act=$_GET['act'];
-
+ 
 if ($act=='delete'){
 	$kd_barang=$_GET['kd_barang'];
 	$row = mysqli_query($koneksi, "DELETE FROM barang WHERE kd_barang = '$kd_barang'");
@@ -11,7 +10,7 @@ if ($act=='delete'){
 }
 
 elseif ($act=='input'){
-	  $nama_barang   = $_POST['nama_barang'];
+	$nama_barang   = $_POST['nama_barang'];
     $model 		     = $_POST['model'];
     $id_supplier   = $_POST['id_supplier'];
     $harga_beli    = $_POST['harga_beli'];
@@ -29,9 +28,9 @@ elseif ($act=='input'){
 }
 
 elseif ($act=='update'){
-		  $kd_barang	   = $_POST['kd_barang'];
-      $nama_barang   = $_POST['nama_barang'];
-      $model  		   = $_POST['model'];
+		$kd_barang	   = $_POST['kd_barang'];
+	    $nama_barang   = $_POST['nama_barang'];
+	    $model  	   = $_POST['model'];
     	$id_supplier   = $_POST['id_supplier'];
     	$harga_beli    = $_POST['harga_beli'];
     	$harga_jual    = $_POST['harga_jual'];

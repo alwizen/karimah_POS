@@ -1,19 +1,17 @@
 <?php
+ $url  = 'http://localhost/karimah'; 
+ $host = 'localhost';  
+ $user = 'root';  
+ $pass = 'BAba55ko';
+ $name = 'hijabStore';  
 
- $url    = 'http://localhost/karimah'; 
- $dbhost = 'localhost';  
- $dbuser = 'root';  
- $dbpass = 'BAba55ko';
- $dbname = 'karimah'; 
-
-
- $koneksi = new mysqli($dbhost,$dbuser,$dbpass,$dbname);  //koneksi Database
+ $koneksi = mysqli_connect($host,$user,$pass,$name);  //koneksi Database
+ mysqli_select_db($koneksi, $name);
 
  //Check koneksi, berhasil atau tidak
- if( $koneksi->connect_error )
- {
-  die( 'Oops!! Koneksi Gagal : '. $koneksi->connect_error );
- }
-
+if (mysqli_connect_errno()){
+	echo "Koneksi database gagal : " . mysqli_connect_error();
+}
+ 
  $url = rtrim($url,'/');
  ?>

@@ -1,4 +1,6 @@
 <?php 
+session_start();
+$nama = ( isset($_SESSION['nama_u']) ) ? $_SESSION['nama_u'] : '';
 include '../koneksi.php';
 include '../assets/fungsi_tanggal.php';
 include '../assets/fungsi_rupiah.php';
@@ -61,10 +63,10 @@ $query=mysqli_query($koneksi,"SELECT
                                    LEFT JOIN barang b ON dp.kd_barang=b.kd_barang
                                    LEFT JOIN supplier s ON b.id_supplier=s.id_supplier
                                    WHERE p.tanggal BETWEEN '".$_POST["dari"]."' AND '".$_POST["sampai"]."' 
-                                   GROUP BY p.kd_pembelian ORDER BY p.tanggal DESC");
+                                   GROUP BY id_det_pembelian ORDER BY p.tanggal DESC");
 while($lihat=mysqli_fetch_array($query)){
-    $pdf->Cell(1, 0.8, $no , 1, 0, 'C');
-    $pdf->Cell(3, 0.8, $lihat['kd_pembelian'],1, 0, 'C');
+     $pdf->Cell(1, 0.8, $no , 1, 0, 'C');
+     $pdf->Cell(3, 0.8, $lihat['kd_pembelian'],1, 0, 'C');
      $pdf->Cell(3.5, 0.8, $lihat['nama_supplier'],1, 0, 'C');
      $pdf->Cell(4, 0.8, $lihat['nama_barang'], 1, 0,'C');
      $pdf->Cell(4, 0.8, tgl_indo($lihat['tanggal']),1, 0, 'C');
@@ -77,6 +79,14 @@ while($lihat=mysqli_fetch_array($query)){
 
 $pdf->Cell(22, 0.8, "TOTAL PENGELUARAN", 1, 0,'C');          
 $pdf->Cell(4, 0.8, Rp($grand_total), 1, 0,'C');
+$pdf->SetFont('Arial','B',10);
+$pdf->ln(1);
+$pdf->MultiCell(19.5,2,'Pekalongan, '.tgl_indo(date("Y-m-d")).'',0,'L');
+$pdf->SetFont('Arial','B',10);
+$pdf->ln(1);
+$pdf->ln(1);
+$pdf->SetFont('Arial','B',10);
+$pdf->MultiCell(19.5,0.8,' '.$nama.' ',0,'L');
 $pdf->Output("laporan_Pembelian.pdf","I");
 
 ?>

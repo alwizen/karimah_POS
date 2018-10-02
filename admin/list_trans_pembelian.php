@@ -16,7 +16,7 @@ $query = "SELECT
           LEFT JOIN det_pembelian dp ON p.id_pembelian=dp.id_pembelian
           LEFT JOIN barang b ON dp.kd_barang=b.kd_barang
           LEFT JOIN supplier s ON b.id_supplier=s.id_supplier
-          GROUP BY p.kd_pembelian ORDER BY p.tanggal DESC";
+          GROUP BY id_det_pembelian ORDER BY p.tanggal DESC";
 $sql = mysqli_query($koneksi, $query);
 ?> 
 

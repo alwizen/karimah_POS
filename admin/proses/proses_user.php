@@ -15,15 +15,17 @@ elseif ($act=='input'){
     $password = $_POST['password'];
     $level    = $_POST['level'];
 
-  $sql = "INSERT INTO users VALUES ('','$nama', '$username', '$password', '$level')";
-  $aksi =mysqli_query($koneksi, $sql);
+  $cek = mysqli_num_rows(mysqli_query($koneksi, "SELECT * FROM users WHERE nama='$nama' or level='$level'"));
+  if ($cek > 0) {
+    echo "<script>window.alert('nama atau username yang anda masukan sudah ada')
+    window.location='../tambah_user.php'</script>";
+  } else {
+    mysqli_query($koneksi, "INSERT INTO users(id, nama, username, password, level)
+    VALUES ('','$nama','$username','$password','$level')");
 
-  if($aksi)
-  {
-        echo "<script>alert('Anda telah berhasil .'); window.location = '../list_user.php'</script>";
+    echo "<script>window.alert('DATA SUDAH DISIMPAN')
+    window.location='../list_user.php'</script>";
   }
-  else {echo "gagal";}
-
 }
 
 elseif ($act=='update'){
